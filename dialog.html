@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal med &lt;dialog&gt;</title>
+</head>
+<body>
+  <button id="openDialogBtn">Öppna dialog</button>
+  <dialog id="accessibleDialog">
+    <h2>Exempel på tillgängligt modalfönster med &lt;dialog&gt;</h2>
+    <p>Här är innehållet i modalfönstret.</p>
+    <button id="closeDialogBtn">Stäng</button>
+  </dialog>
+
+  <script>
+    const openDialogBtn = document.getElementById('openDialogBtn');
+    const closeDialogBtn = document.getElementById('closeDialogBtn');
+    const dialog = document.getElementById('accessibleDialog');
+
+    function openDialog() {
+      dialog.showModal();
+      closeDialogBtn.focus();
+    }
+    function closeDialog() {
+      dialog.close();
+      openDialogBtn.focus();
+    }
+    openDialogBtn.onclick = openDialog;
+    closeDialogBtn.onclick = closeDialog;
+
+    dialog.addEventListener('cancel', () => {
+      openDialogBtn.focus();
+    });
+  </script>
+
+  <style>
+    dialog {
+      border: 1px solid #e24343;
+      background: rgb(230, 230, 230);
+      padding: 1rem;
+    }
+
+    button {
+      background-color: #e24343;
+      border: none;
+      padding: 2rem;
+
+    }
+  </style>
+  <!-- Några fördelar med dialog jämfört med "modal" delen. 
+    1. När en dialog öppnas sätts fokus automatiskt på det första elementet som är fokuserbart. 
+    2. Mindre JavaScript behövs eftersom dialogens inbyggda funktioner ersätter behovet av manuella attribut. -->
+</body>
+</html>

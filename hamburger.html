@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamburgarmeny</title>
+  <style>
+    #menuContent {
+      display: none;
+      background-color: #bb3131;
+      padding: 1rem;
+    }
+    ul {
+      list-style: none;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #4efc9c;
+    }
+  </style>
+</head>
+<body>
+  <button id="menuButton" aria-expanded="false" aria-controls="menuContent">Meny</button>
+  <nav id="menuContent">
+    <ul>
+      <li><a href="#">Hem</a></li>
+      <li><a href="#">Om oss</a></li>
+      <li><a href="#">Tjänster</a></li>
+      <li><a href="#">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const menuContent = document.getElementById('menuContent');
+
+    menuButton.onclick = () => {
+      const isOpen = menuContent.style.display === 'block';
+      menuContent.style.display = isOpen ? 'none' : 'block';
+      menuButton.setAttribute('aria-expanded', !isOpen);
+    };
+  </script>
+</body>
+</html>

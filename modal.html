@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal</title>
+</head>
+<body>
+  <button id="openModalBtn">Öppna modalfönster</button>
+  <div id="accessibleModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <h2 id="modalTitle">Exempel på modalfönster</h2>
+    <p>Här är lite text i modalfönstret.</p>
+    <button id="closeModalBtn">Stäng</button>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const modal = document.getElementById('accessibleModal');
+    const overlay = document.getElementById('overlay');
+
+    function openModal() {
+      modal.style.display = 'block';
+      overlay.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+    }
+    function closeModal() {
+      modal.style.display = 'none';
+      overlay.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      
+    }
+    openBtn.onclick = openModal;
+    closeBtn.onclick = closeModal;
+    overlay.onclick = closeModal;
+    window.onkeydown = (e) => {
+      if (e.key === 'Escape') closeModal();
+    };
+  </script>
+  <style>
+    #accessibleModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      background: rgb(134, 26, 26);
+      padding: 1rem;
+    }
+  </style>
+</body>
+</html>
